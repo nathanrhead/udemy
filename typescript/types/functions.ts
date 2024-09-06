@@ -21,7 +21,7 @@ const addNums = (x: number, y: number): number => {
 };
 
 function multiplyNums(x: number, y: number): number {
-  return x + y;
+  return x * y;
 }
 
 // A function that may return various data types.
@@ -41,7 +41,7 @@ function printTwice(msg: string): void {
   console.log(msg);
 }
 
-// The NEVER type: used to annotate functions that should never return anything. (A void function stills returns "undefined.") The inferred return type of this function would be "void" without the explicit annotation.
+// The NEVER type: used to annotate functions that should never return anything. (A void function still returns "undefined.") The inferred return type of this function would be "void" without the explicit annotation.
 function makeError(msg: string): never {
   throw new Error(msg);
 }
