@@ -26,3 +26,6 @@ const isLeapYear2 = (year: number): boolean => (year % 4 === 0 && year % 100 !==
 // Tests
 console.log(isLeapYear(2012)) // => true
 console.log(isLeapYear(2013)) // => false
+console.log(isLeapYear2(2012)) // => true
+console.log(isLeapYear2(2013)) // => false
+
