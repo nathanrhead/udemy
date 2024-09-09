@@ -1,1 +1,0 @@
-// To run a TypeScript file from the command line in node, either create a JS file by running tsc [fileName.ts] and then running node [fileName.js] or by running ts-node [fileName.ts], after globally installing ts-node via npm.

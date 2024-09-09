@@ -1,0 +1,19 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+  },
+  "skipLibCheck": true,
+  "files": ["./typescript/basics.ts"],
+  "include": ["./typescript"],
+  "exclude": [
+    "node_modules",
+    "obj",
+    "bin",
+    "node"
+  ]
+}
