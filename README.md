@@ -4,7 +4,9 @@ Code-alongs and challenges from courses on Udemy.
 
 ## Running a TS File from the CLI
 
-To run a TypeScript file from the command line in node, either create a JS file from the TS file by running tsc [fileName.ts] and then running node [fileName.js] or by running ts-node [fileName.ts], after globally installing ts-node via npm.
+To run a TypeScript file from the command line in node, either create a JS file from the TS file by running `tsc [fileName.ts]` and then running `node [fileName.js]` or by running `ts-node [fileName.ts]`, after globally installing ts-node via npm.
+
+All files can be compiled at once by running `tsc` from the command line without indicating a file.
 
 ## Playground
 
