@@ -26,3 +26,9 @@ const myPointWithoutZ = {
     x: 4,
     y: 4
 };
+// TS types can be overridden with a "type assertion."
+let mystery = 'Ian wuz ere.';
+const numChars = mystery.length; // It won't change's mystery's type permanently.
+const input = document.getElementById('btn'); // Without casting it to an HTMLInputElement type, it is assigned the generic HTMLElement type, which doesn't have access to the "value" key.
+// Using angle brackets is another way to cast to a new type. This syntax doesn't work with JSX (React).
+input.value;

@@ -1,6 +1,5 @@
 "use strict";
 'use script';
-Object.defineProperty(exports, "__esModule", { value: true });
 // A union type allows for the assigning of multiple types. NB: it's always best to be as strict in your typing as possible.
 let age = 47;
 age = 'forty-seven';
@@ -16,3 +15,5 @@ function calculateTax(price, tax) {
         price = parseFloat(price.replace('$', ''));
     return price * tax;
 }
+// Makes the file into a module, excluding it from duplicate-type-definition checking.
+// export {};
