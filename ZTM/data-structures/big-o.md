@@ -1,0 +1,1 @@
+![big-O cheatsheet](https://www.bigocheatsheet.com/img/big-o-cheat-sheet-poster.png)
