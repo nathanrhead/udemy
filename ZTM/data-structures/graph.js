@@ -2,6 +2,7 @@
 // A graph can by undirected, meaning that the relationship between two nodes is bi-directional, or directed, meaning that the relationship between two nodes is unidirectional.
 // A graph can be cyclic, meaning that node A is connected to node B is connected back to node A; or acyclic, where there is no circular connection.
 // A graph can be weighted, with the edges connecting the nodes having values that represent something, e.g., length of time to drive from point A to point B. 
+// A graph can be connected, meaning there is at least one path between every pair of vertices. In other words, it is possible to travel from any vertex to any other vertex in the graph, possibly passing through other vertices along the way.
 // A graph is great when relationships are a key characteristic of the data.
 // A graph, because it can become complicated, is difficult to scale. It's unlikely you'll ever have to build your own graph for production. Tools such as Neo4j are used instead.
 
