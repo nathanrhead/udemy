@@ -1,3 +1,8 @@
+// The bubble-sort algorithm compares two values (i and i + 1) and sorts them in ascending order, bubbling the largest numbers to the end (or top) of the array.
+
+// Because of its nested loops, it has a time complexity of O(n^2), or quadratic.
+// Because it changes the array in place, its space complexity is O(1). 
+
 const numbers = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0];
 
 function bubbleSort(array) {
