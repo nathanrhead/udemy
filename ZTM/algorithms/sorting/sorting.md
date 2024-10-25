@@ -28,3 +28,7 @@ In addition, JS's sort() method's time and space complexity cannot be guaranteed
 
     - Merge Sort
     - Quick Sort
+
+## Notes
+
+1. A stable algorithm maintains the original order of items whose order in the context of the sort doesn't matter, e.g., when sorting alphabetically by the first letter of each word, in a stable alogrithm, `["peach," "straw", "apple", "spork"]` becomes `["apple", "peach," "straw", "spork"]`, where in an unstable algorithm, the resulting array could be `["apple", "peach," "spork", "straw"]`.
