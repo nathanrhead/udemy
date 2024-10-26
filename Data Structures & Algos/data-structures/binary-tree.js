@@ -9,7 +9,6 @@ class Node {
 }
 
 class BinarySearchTree {
-
   // Uses recursion.
   insertWithRecursion(value) { 
     if (!value) return;
