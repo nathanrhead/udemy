@@ -15,11 +15,11 @@
 // Edge list: shows the connections.
 const edgeListGraph = [[0, 2], [2, 3], [2, 1], [1, 3]];
 
-// Adjacent list: the index is the node and the value is the node's neighbors. Can be made with objects, too, which are especially useful when the values of the nodes aren't numbers or aren't in order.
+// Adjacency list: the index is the node and the value is the node's neighbors. Can be made with objects, too, which are especially useful when the values of the nodes aren't numbers or aren't in order.
 // Index 0 = node 0; at 0 index is the value of the node that the zero node is connected to.
 const adjacentListGraph = [[2], [2, 3], [0, 1, 3], [1, 2]];
 
-// The adjacent list above as an object instead of an array.
+// The adjacency list above as an object instead of an array.
 const adjacentListGraphObject = {
   0: [2],
   1: [2, 3],
