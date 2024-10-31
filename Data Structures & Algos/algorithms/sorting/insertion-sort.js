@@ -3,7 +3,7 @@
 const numbers = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0];
 
 
-function insertionSort(array) {
+function insertionSortOne(array) {
   for (let i = 0; i < array.length; i++) {
 
     console.log({i}, 'array[i]: ', array[i]);
@@ -32,4 +32,21 @@ function insertionSort(array) {
   return array;
 }
 
-console.log(insertionSort(numbers));
+// A better way to do insertion sort, suggested by ChatGPT.
+function insertionSortTwo(array) {
+  for (let i = 1; i < array.length; i++) {
+    let j = i - 1;
+
+    // Move elements of array[0..i-1] that are greater than key
+    // to one position ahead of their current position
+    while (j >= 0 && array[j] > array[i]) {
+      array[j + 1] = array[j];
+      j--;
+    }
+    array[j + 1] = array[i]; // Insert key into the correct position
+  }
+  return array;
+}
+
+console.log(insertionSortOne(numbers));
+console.log(insertionSortTwo(numbers));
