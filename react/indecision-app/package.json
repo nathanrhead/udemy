@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "live-server": "^1.2.2"
+  },
+  "name": "indecision-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server ./public --open --browser='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
