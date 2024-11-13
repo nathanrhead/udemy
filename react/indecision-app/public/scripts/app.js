@@ -1,123 +1,107 @@
 'use strict';
 
+var rootElement = document.getElementById('root');
+var root = ReactDOM.createRoot(rootElement);
+
 var user = {
-  // username: 'Nate',
+  username: 'Nate',
   age: 47,
   location: 'Leavenworth, WA'
 };
 var appInfo = {
   title: 'Indecision App',
   subtitle: 'Apples or Oranges?',
-  author: 'Nate Cox'
-  // options: ['Orange', 'Four']
+  author: 'Nate Cox',
+  options: []
 };
 
-var templateUser = React.createElement(
-  'div',
-  null,
-  React.createElement(
-    'h1',
-    null,
-    user.username ? user.username : 'Anonymous'
-  ),
-  user.age && user.age > 40 && React.createElement(
-    'p',
-    null,
-    'Age: Medium Well'
-  ),
-  getLocation(user.location)
-);
+var makeDecision = function makeDecision() {
+  var randoNum = Math.floor(Math.random() * appInfo.options.length);
+  var option = appInfo.options[randoNum];
 
-var templateTitle = React.createElement(
-  'div',
-  null,
-  React.createElement(
-    'h1',
-    null,
-    appInfo.title
-  ),
-  appInfo.subtitle && React.createElement(
-    'h2',
-    null,
-    appInfo.subtitle
-  ),
-  React.createElement(
-    'h3',
-    null,
-    'by ',
-    appInfo.author
-  ),
-  appInfo.options && appInfo.options.length ? React.createElement(
-    'ul',
-    null,
-    'Options:',
-    appInfo.options.map(function (option, key) {
-      return React.createElement(
-        'li',
-        { key: key },
-        'option'
-      );
-    })
-  ) : React.createElement(
-    'p',
-    null,
-    'There are no options to choose from.'
-  )
-);
+  alert(option);
+};
 
-function getLocation(location) {
-  return location ? React.createElement(
-    'p',
-    null,
-    'Location: ',
-    location
-  ) : null;
-}
+var handleSubmit = function handleSubmit(event) {
+  event.preventDefault();
 
-var appRoot = document.getElementById('app');
+  var option = event.target.children.option.value;
 
-var count = 0;
-var renderCounterApp = function renderCounterApp() {
-  var addOne = function addOne() {
-    count++;
-    renderCounterApp();
-  };
-  var minusOne = function minusOne() {
-    count--;
-    renderCounterApp();
-  };
-  var resetCounter = function resetCounter() {
-    count = 0;
-    renderCounterApp();
-  };
+  if (option) {
+    appInfo.options.push(option);
+    event.target.children.option.value = '';
+    renderComponent();
+  }
+};
 
-  var templateCounter = React.createElement(
+var handleDelete = function handleDelete(key) {
+  if (key || key === 0) appInfo.options.splice(key, 1);else appInfo.options = [];
+
+  renderComponent();
+};
+
+var renderComponent = function renderComponent() {
+  var templateTitle = React.createElement(
     'div',
     null,
     React.createElement(
-      'h3',
+      'h1',
       null,
-      'Count: ',
-      count
+      appInfo.title
+    ),
+    appInfo.subtitle && React.createElement(
+      'h2',
+      null,
+      appInfo.subtitle
     ),
     React.createElement(
       'button',
-      { onClick: addOne },
-      '+1'
+      { disabled: !appInfo.options.length, onClick: makeDecision },
+      'What Should I Do?'
     ),
     React.createElement(
       'button',
-      { onClick: minusOne },
-      '-1'
+      { onClick: function onClick() {
+          return handleDelete();
+        } },
+      'Remove All Options'
     ),
     React.createElement(
-      'button',
-      { onClick: resetCounter },
-      'Reset'
+      'ol',
+      null,
+      'Options:',
+      appInfo.options.map(function (option, key) {
+        return React.createElement(
+          'div',
+          { key: key, style: { display: 'flex' } },
+          React.createElement(
+            'li',
+            null,
+            option
+          ),
+          React.createElement(
+            'span',
+            { style: { padding: '0 1rem', cursor: 'pointer' }, onClick: function onClick() {
+                return handleDelete(key);
+              } },
+            'X'
+          )
+        );
+      })
+    ),
+    React.createElement(
+      'form',
+      { onSubmit: handleSubmit },
+      React.createElement('input', { type: 'text', name: 'option' }),
+      React.createElement(
+        'button',
+        null,
+        'Add Option'
+      )
     )
   );
 
-  ReactDOM.render(templateCounter, appRoot);
+  root.render(templateTitle);
 };
 
-renderCounterApp();
+renderComponent();

@@ -1,5 +1,8 @@
+const rootElement = document.getElementById('root');
+const root = ReactDOM.createRoot(rootElement);
+
 const user = {
-  // username: 'Nate',
+  username: 'Nate',
   age: 47,
   location: 'Leavenworth, WA'
 };
@@ -7,69 +10,58 @@ const appInfo = {
   title: 'Indecision App',
   subtitle: 'Apples or Oranges?',
   author: 'Nate Cox',
-  // options: ['Orange', 'Four']
+  options: []
 }
 
-const templateUser = (
-  <div>
-    <h1>{user.username ? user.username : 'Anonymous'}</h1>
-    {user.age && user.age > 40 && <p>Age: Medium Well</p>}
-    {getLocation(user.location)}
-  </div>
-);
+const makeDecision = () => {
+  const randoNum = Math.floor(Math.random() * appInfo.options.length);
+  const option = appInfo.options[randoNum];
 
-const templateTitle = (
-  <div>
-    <h1>{appInfo.title}</h1>
-    {appInfo.subtitle && <h2>{appInfo.subtitle}</h2>}
-    <h3>by {appInfo.author}</h3>
-    {appInfo.options && appInfo.options.length ? 
-    (
-      <ul>Options:
-        {appInfo.options.map((option, key) => 
-          <li key={key}>option</li>
-        )}
-      </ul>
-    )
-    :
-    (
-      <p>There are no options to choose from.</p>
-    )}
-  </div>
-);
-
-function getLocation(location) {
-  return location ?<p>Location: {location}</p> : null;
-}
-
-
-const appRoot = document.getElementById('app');
-
-let count = 0;
-const renderCounterApp = () => {
-  const addOne = () => { 
-    count++; 
-    renderCounterApp();
-  };
-  const minusOne = () => { 
-    count--; 
-    renderCounterApp();
-  };
-  const resetCounter = () => { 
-    count = 0;
-    renderCounterApp();
-  };
-
-  const templateCounter = (
-    <div>
-      <h3>Count: {count}</h3>
-      <button onClick={addOne}>+1</button>
-      <button onClick={minusOne}>-1</button>
-      <button onClick={resetCounter}>Reset</button>
-    </div>
-  );
-  
-  ReactDOM.render(templateCounter, appRoot);
+  alert(option);
 };
 
-renderCounterApp();
+const handleSubmit = event => {
+  event.preventDefault();
+
+  const option = event.target.children.option.value;
+
+  if (option) {
+    appInfo.options.push(option);
+    event.target.children.option.value = '';
+    renderComponent();
+  }
+};
+
+const handleDelete = key => {
+  if (key || key === 0) appInfo.options.splice(key, 1);
+  else appInfo.options = [];
+
+  renderComponent();
+};
+
+const renderComponent = () => {
+  const templateTitle = (
+    <div>
+      <h1>{appInfo.title}</h1>
+      {appInfo.subtitle && <h2>{appInfo.subtitle}</h2>}
+      <button disabled={!appInfo.options.length} onClick={makeDecision}>What Should I Do?</button>
+      <button onClick={() => handleDelete()}>Remove All Options</button>
+      <ol>Options:
+        {appInfo.options.map((option, key) => 
+          <div key={key} style={{display:'flex'}}>
+            <li>{option}</li>
+            <span style={{padding:'0 1rem', cursor:'pointer'}} onClick={() => handleDelete(key)}>X</span>
+          </div>
+        )}
+      </ol>
+      <form onSubmit={handleSubmit}>
+        <input type='text' name='option' />
+        <button>Add Option</button>
+      </form>
+    </div>
+  );
+
+  root.render(templateTitle);
+};
+
+renderComponent();

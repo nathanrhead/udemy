@@ -4,7 +4,8 @@
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "live-server --open=public/index.html --browser='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'"
+    "start": "live-server --open=indecision-app/public/index.html --browser='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'",
+    "build": "babel indecision-app/src/app.js --out-file indecision-app/public/scripts/app.js --copy-files --watch"
   },
   "keywords": [],
   "author": "Nate Cox",
