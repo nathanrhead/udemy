@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "live-server --open=playground/public/index.html --browser='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'",
-    "build": "babel playground/src/es6-classes-one.js --out-file playground/public/scripts/app.js --copy-files --watch"
+    "build": "babel playground/src/counter.js --out-file playground/public/scripts/app.js --copy-files --watch"
   },
   "keywords": [],
   "author": "Nate Cox",

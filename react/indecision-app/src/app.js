@@ -1,67 +1,99 @@
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
 
-const user = {
-  username: 'Nate',
-  age: 47,
-  location: 'Leavenworth, WA'
-};
-const appInfo = {
-  title: 'Indecision App',
-  subtitle: 'Apples or Oranges?',
-  author: 'Nate Cox',
-  options: []
+class IndecisionApp extends React.Component {
+  render() {
+    const title = 'Indecision';
+    const subtitle = 'Let a Computer Decide';
+    const options = ['apples', 'oranges', 'blues'];
+
+    return (
+      <div>
+        <Header title={title} subtitle={subtitle} />
+        <Action options={options} />
+        <Options options={options} />
+        <AddOption />
+      </div>
+    )
+  } 
 }
 
-const makeDecision = () => {
-  const randoNum = Math.floor(Math.random() * appInfo.options.length);
-  const option = appInfo.options[randoNum];
-
-  alert(option);
-};
-
-const handleSubmit = event => {
-  event.preventDefault();
-
-  const option = event.target.children.option.value;
-
-  if (option) {
-    appInfo.options.push(option);
-    event.target.children.option.value = '';
-    renderComponent();
+class Header extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>{this.props.title}</h1>
+        <h2>{this.props.subtitle}</h2>
+      </div>
+    )
   }
-};
+}
 
-const handleDelete = key => {
-  if (key || key === 0) appInfo.options.splice(key, 1);
-  else appInfo.options = [];
+class Action extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this); // Because event handlers aren't bound to "this," they have to be manually bound using .bind(this). This is not the case with arrow functions, if using the latest presets and plugins for Babel, namely @babel/preset-env, @babel/preset-react, and the @babel/plugin-proposal-class-properties. Doing it this way, instead of every time we call this function--assuming more than once--ensures that the method is bound to the proper context, i.e., this.
+  }
 
-  renderComponent();
-};
+  handleClick() { 
+    const randoNum = Math.floor(Math.random() * this.props.options.length);
+    const randoChoice = this.props.options[randoNum];
 
-const renderComponent = () => {
-  const templateTitle = (
-    <div>
-      <h1>{appInfo.title}</h1>
-      {appInfo.subtitle && <h2>{appInfo.subtitle}</h2>}
-      <button disabled={!appInfo.options.length} onClick={makeDecision}>What Should I Do?</button>
-      <button onClick={() => handleDelete()}>Remove All Options</button>
-      <ol>Options:
-        {appInfo.options.map((option, key) => 
-          <div key={key} style={{display:'flex'}}>
-            <li>{option}</li>
-            <span style={{padding:'0 1rem', cursor:'pointer'}} onClick={() => handleDelete(key)}>X</span>
-          </div>
+    alert(randoChoice);
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleClick}>What Should I Do?</button>
+      </div>
+    )
+  }
+}
+
+class Options extends React.Component {
+  removeAll() {}
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.removeAll.bind(this)}>Remove All</button>
+        {this.props.options && (
+          this.props.options.map((option, key) => <Option key={key} option={option} />)
         )}
-      </ol>
-      <form onSubmit={handleSubmit}>
+      </div>
+    )
+  }
+}
+
+class Option extends React.Component {
+  render() {
+    return (
+      <p>
+        {this.props.option}
+      </p>
+    )
+  }
+}
+
+class AddOption extends React.Component {
+  addOption(e) {
+    e.preventDefault();
+    
+    const option = e.target.elements.option.value.trim();
+
+    if (option) alert(option);
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.addOption.bind(this)}>
         <input type='text' name='option' />
         <button>Add Option</button>
       </form>
-    </div>
-  );
+    )
+  }
+}
 
-  root.render(templateTitle);
-};
 
-renderComponent();
+root.render(<IndecisionApp />);

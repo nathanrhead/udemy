@@ -1,105 +1,136 @@
 'use strict';
 
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+// A basic example of how React works, though behind the scenes it is much more efficient than this. React only changes what has changed, without rerendering the whole component, using a "virtual DOM" algorithm. In the case below, when a user clicks on the +1 button, only the number of the counter changes, and nothing else, not even the element in which the count is rendered.
+var rootElement = document.getElementById('root');
+var root = ReactDOM.createRoot(rootElement);
 
-var Person = function () {
-  function Person() {
-    var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Anonymous';
-    var age = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+// The original version of the counter app.
+var count = 0;
+var renderCounterApp = function renderCounterApp() {
+  var addOne = function addOne() {
+    count++;
+    renderCounterApp();
+  };
+  var minusOne = function minusOne() {
+    count--;
+    renderCounterApp();
+  };
+  var resetCounter = function resetCounter() {
+    count = 0;
+    renderCounterApp();
+  };
 
-    _classCallCheck(this, Person);
+  var templateCounter = React.createElement(
+    'div',
+    null,
+    React.createElement(
+      'h3',
+      null,
+      'Count: ',
+      count
+    ),
+    React.createElement(
+      'button',
+      { onClick: addOne },
+      '+1'
+    ),
+    React.createElement(
+      'button',
+      { onClick: minusOne },
+      '-1'
+    ),
+    React.createElement(
+      'button',
+      { onClick: resetCounter },
+      'Reset'
+    )
+  );
 
-    this.name = name;
-    this.age = age;
-    this.description = this.getDescription();
-  }
+  root.render(templateCounter);
+};
 
-  _createClass(Person, [{
-    key: 'getGreeting',
-    value: function getGreeting() {
-      return 'Hello, my name is ' + this.name + '!';
-    }
-  }, {
-    key: 'getDescription',
-    value: function getDescription() {
-      return this.name + ' is ' + this.age + ' year(s) old.';
-    }
-  }]);
+// renderCounterApp();
 
-  return Person;
-}();
+// The counter app as a React class component.
 
-var Student = function (_Person) {
-  _inherits(Student, _Person);
+var Counter = function (_React$Component) {
+  _inherits(Counter, _React$Component);
 
-  function Student(name, age, major) {
-    _classCallCheck(this, Student);
+  function Counter(props) {
+    _classCallCheck(this, Counter);
 
-    var _this = _possibleConstructorReturn(this, (Student.__proto__ || Object.getPrototypeOf(Student)).call(this, name, age));
+    var _this = _possibleConstructorReturn(this, (Counter.__proto__ || Object.getPrototypeOf(Counter)).call(this, props));
 
-    _this.major = major;
+    _this.addOne = _this.addOne.bind(_this);
+    _this.minusOne = _this.minusOne.bind(_this);
+    _this.resetCounter = _this.resetCounter.bind(_this);
+    _this.state = { count: 0 };
     return _this;
   }
 
-  _createClass(Student, [{
-    key: 'hasMajor',
-    value: function hasMajor() {
-      return !!this.major;
+  _createClass(Counter, [{
+    key: 'addOne',
+    value: function addOne() {
+      this.setState(function (prevState) {
+        return {
+          count: prevState.count + 1
+        };
+      });
     }
   }, {
-    key: 'getDescription',
-    value: function getDescription() {
-      // Overrides the parent's version of getDescription.
-      var description = _get(Student.prototype.__proto__ || Object.getPrototypeOf(Student.prototype), 'getDescription', this).call(this); // This calls the parent's version of getDescription and stores its result.
-
-      if (this.hasMajor) description += ' His major is ' + this.major + '.';
-
-      return description;
+    key: 'minusOne',
+    value: function minusOne() {
+      this.setState(function (prevState) {
+        return { count: prevState.count - 1 };
+      });
+    }
+  }, {
+    key: 'resetCounter',
+    value: function resetCounter() {
+      this.setState(function () {
+        return { count: 0 };
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        null,
+        React.createElement(
+          'h3',
+          null,
+          'Count: ',
+          this.state.count
+        ),
+        React.createElement(
+          'button',
+          { onClick: this.addOne },
+          '+1'
+        ),
+        React.createElement(
+          'button',
+          { onClick: this.minusOne },
+          '-1'
+        ),
+        React.createElement(
+          'button',
+          { onClick: this.resetCounter },
+          'Reset'
+        )
+      );
     }
   }]);
 
-  return Student;
-}(Person);
+  return Counter;
+}(React.Component);
 
-var Traveler = function (_Person2) {
-  _inherits(Traveler, _Person2);
-
-  function Traveler(name, age, location) {
-    _classCallCheck(this, Traveler);
-
-    var _this2 = _possibleConstructorReturn(this, (Traveler.__proto__ || Object.getPrototypeOf(Traveler)).call(this, name, age));
-
-    _this2.location = location;
-    return _this2;
-  }
-
-  _createClass(Traveler, [{
-    key: 'getGreeting',
-    value: function getGreeting() {
-      var greeting = _get(Traveler.prototype.__proto__ || Object.getPrototypeOf(Traveler.prototype), 'getGreeting', this).call(this);
-
-      if (this.location) greeting += ' I\'m visiting from ' + this.location + '.';
-
-      return greeting;
-    }
-  }]);
-
-  return Traveler;
-}(Person);
-
-var personOne = new Student('Sasha', 10, 'Russian');
-console.log({ personOne: personOne });
-console.log('has major?:', personOne.hasMajor());
-console.log('get description:', personOne.getDescription());
-
-var travelerOne = new Traveler('Olya', 36, 'St. Petersburg');
-
-console.log('traveler greeting:', travelerOne.getGreeting());
+root.render(React.createElement(Counter, null));
