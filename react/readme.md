@@ -38,4 +38,3 @@
   A. Vite: A modern, fast development server and build tool.
   B. ESBuild: Focuses on speed and simplicity. 
   C. Parcel: Zero-config bundler for simpler setups.
-  

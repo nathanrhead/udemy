@@ -4,8 +4,9 @@
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "live-server --open=playground/public/index.html --browser='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'",
+    "start-live-server": "live-server --open=indecision-app/public/index.html --browser='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'",
     "build-babel": "babel indecision-app/src/app.js --out-file indecision-app/public/scripts/app.js --copy-files --watch",
+    "start": "webpack serve",
     "build": "webpack --watch"
   },
   "keywords": [],
@@ -13,13 +14,20 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
     "live-server": "^1.2.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-modal": "^3.16.1",
+    "validator": "^13.12.0",
     "webpack": "^5.96.1"
   },
   "devDependencies": {
-    "webpack-cli": "^5.1.4"
+    "@babel/cli": "^7.26.4",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3",
+    "babel-loader": "^9.2.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
   }
 }
