@@ -1,0 +1,23 @@
+@use 'settings' as *;
+
+html {
+  font-size: 62.5%; // 1rem = 10px
+}
+
+body {
+  font-family: Garamond, Georgia, 'Times New Roman', serif;
+  font-size: $m-size;
+  background-color: $dark-blue;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Helevetica, Arial, sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+}

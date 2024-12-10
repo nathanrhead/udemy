@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client'; // For React 18+
 import IndecisionApp from './components/indecision-app';
 import Modal from 'react-modal';
+import 'normalize.css/normalize.css';
+import './styles/styles.scss';
 
 // Define the app element for react-modal.
 Modal.setAppElement('#root');

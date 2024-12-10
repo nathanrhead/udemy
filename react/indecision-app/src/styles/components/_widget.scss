@@ -1,0 +1,18 @@
+@use '../base/settings' as *;
+
+.widget {
+  background-color: $light-blue;
+  margin-bottom: $xl-size;
+}
+
+.widget-header {
+  background-color: $blue;
+  color: $off-white;
+  padding: $m-size;
+  display: flex;
+  justify-content: space-between;
+}
+
+.widget-header__title {
+  margin: 0;
+}

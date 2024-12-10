@@ -1,0 +1,20 @@
+@use '../base/settings' as *;
+
+.header {
+  background: $off-black;
+  color: whitesmoke;
+  margin-bottom: 4.8rem;
+  padding: $m-size 0;
+}
+
+.header__title { // This is a naming convention called "Block Element Modifier" (BEM): the header is the block and the title is the element. It's used instead of nesting in Sass.
+  font-size: $xl-size;
+  margin: 0;
+}
+
+.header__subtitle {
+  font-size: $m-size;
+  font-weight: 500;
+  color: $off-white;
+  margin: 0;
+}

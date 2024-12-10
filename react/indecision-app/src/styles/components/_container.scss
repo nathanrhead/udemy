@@ -1,0 +1,7 @@
+@use '../base/settings' as *;
+
+.container {
+  width: 50%;
+  margin: 0 auto;
+  padding: 0 $m-size;
+}

@@ -2,7 +2,7 @@ import React from 'react';
 
 const RemoveAll = props => {
   return(
-    <button onClick={props.removeAll}>Remove All</button>
+    <button className='button button--link' onClick={props.removeAll}>Remove All</button>
   );
 }
 

@@ -2,8 +2,8 @@ import React from 'react';
 import RemoveOption from './remove-option';
 
 const Option = props => (
-  <div style={{ display:'flex', alignItems:'flex-end'}}>
-    <p style={{ margin:'0'}}>
+  <div>
+    <p>
       {props.option}
     </p>
     <RemoveOption removeOption={props.removeOption} option={props.option} />

@@ -11,11 +11,19 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.jsx?$/,  // This matches both .js and .jsx files      
+      test: /\.jsx?$/,  // This matches both .js and .jsx files.  
       exclude: /node_modules/,
       use: {
         loader: 'babel-loader',
       }
+    },
+    {
+      test: /\.s?css$/, // This matches both .css and .scss files.
+      use: [ // Loaders are applied from right to left.
+        'style-loader',
+        'css-loader',
+        'sass-loader'
+      ]
     }]
   },
   mode: 'development', // or 'production'
