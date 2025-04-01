@@ -1,9 +1,9 @@
-import Component from './starter/02-props';
+import Component from './starter/03-state/';
 
 function App() {
   return (
     <main>
-      <Component name={'Ian'} id={1}>
+      <Component>
         <p>Children</p>
       </Component>
     </main>
