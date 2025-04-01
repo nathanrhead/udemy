@@ -1,4 +1,4 @@
-import Starter from './tutorial/01-useState/starter/01-error-example';
+import Starter from './tutorial/10-useReducer/final/01-useReducer.jsx';
 
 function App() {
   return (

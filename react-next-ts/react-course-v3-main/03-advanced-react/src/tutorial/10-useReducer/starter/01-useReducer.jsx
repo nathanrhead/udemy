@@ -1,12 +1,11 @@
-import React from 'react';
+import { useState } from 'react';
 import { data } from '../../../data';
 const ReducerBasics = () => {
-  const [people, setPeople] = React.useState(data);
+  const [people, setPeople] = useState(data);
 
-  const removeItem = (id) => {
-    let newPeople = people.filter((person) => person.id !== id);
-    setPeople(newPeople);
-  };
+  const removeItem = (id) => setPeople( people.filter(person => person.id !== id));
+  const resetList = () => setPeople(data);
+
   return (
     <div>
       {people.map((person) => {
@@ -18,13 +17,26 @@ const ReducerBasics = () => {
           </div>
         );
       })}
-      <button
-        className='btn'
-        style={{ marginTop: '2rem' }}
-        onClick={() => setPeople([])}
-      >
-        clear items
-      </button>
+      {!people.length ?
+      (
+        <button
+          className='btn'
+          style={{ marginTop: '2rem' }}
+          onClick={resetList}
+        >
+          reset list
+        </button>
+      )
+      :
+      (
+        <button
+          className='btn'
+          style={{ marginTop: '2rem' }}
+          onClick={() => setPeople([])}
+        >
+          clear items
+        </button>
+      )}
     </div>
   );
 };
