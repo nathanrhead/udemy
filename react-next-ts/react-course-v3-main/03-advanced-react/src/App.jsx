@@ -1,4 +1,4 @@
-import Starter from './tutorial/10-useReducer/final/01-useReducer.jsx';
+import Starter from './tutorial/11-performance/starter/04-react-18/index.jsx';
 
 function App() {
   return (
