@@ -1,9 +1,12 @@
-import Component from './starter/04-events/';
+import Component from './starter/05-challenge/';
 
 function App() {
   return (
     <main>
-      <Component/>
+      <h2>React & Typescript</h2>
+      <h3 style={{ textAlign: 'center' }}>Challenge</h3>
+      <Component type='basic' name='Sasha' />
+      <Component type='advanced' name='Sasha' email='sasha@sasha.sasha' />
     </main>
   );
 }

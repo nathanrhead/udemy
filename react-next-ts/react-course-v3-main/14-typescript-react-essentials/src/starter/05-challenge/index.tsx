@@ -1,8 +1,14 @@
-function Component() {
+type Props = {
+  type: 'basic' | 'advanced';
+  name: string;
+  email?: string;
+}
+
+function Component({ type, name, email}: Props) {
   return (
-    <div>
-      <h2>React & Typescript</h2>
-      <h2>Challenge</h2>
+    <div className={`alert alert-${type === 'basic' ? 'success' : 'danger'}`}>
+      <p>{name}</p>
+      {email && <p>{email}</p>}
     </div>
   );
 }
