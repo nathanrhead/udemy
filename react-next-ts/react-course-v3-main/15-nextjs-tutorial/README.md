@@ -1,3 +1,5 @@
+# Next.js Tutorial
+
 ## Node Version
 
 The minimum Node.js version has been bumped from 16.14 to 18.17, since 16.x has reached end-of-life.
@@ -5,7 +7,7 @@ The minimum Node.js version has been bumped from 16.14 to 18.17, since 16.x has 
 ## Create Next App
 
 ```sh
-npx create-next-app@14 appName
+npx create-next-app@latest appName
 ```
 
 ## Folder Structure
