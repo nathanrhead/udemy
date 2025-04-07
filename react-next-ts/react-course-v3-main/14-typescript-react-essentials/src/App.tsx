@@ -1,4 +1,4 @@
-import Component from './final/06-context/';
+import Component from './starter/07-reducers/';
 
 function App() {
   return (
