@@ -7,19 +7,14 @@ type ThemeProviderState = {
   setTheme: (theme: Theme) => void;
 };
 
-const ThemeProviderContext = createContext<ThemeProviderState | undefined>(
-  undefined
-);
+const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undefined);
 
 type ThemeProviderProps = {
   children: React.ReactNode;
   defaultTheme?: Theme;
 };
 
-export function ThemeProvider({
-  children,
-  defaultTheme = 'system',
-}: ThemeProviderProps) {
+export function ThemeProvider({ children, defaultTheme = 'system' }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(defaultTheme);
   return (
     <ThemeProviderContext.Provider value={{ theme, setTheme }}>
@@ -28,6 +23,7 @@ export function ThemeProvider({
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => {
   const context = useContext(ThemeProviderContext);
 

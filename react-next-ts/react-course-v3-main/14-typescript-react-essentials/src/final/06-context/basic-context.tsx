@@ -1,8 +1,6 @@
 import { createContext, useContext } from 'react';
 
-const ThemeProviderContext = createContext<{ name: string } | undefined>(
-  undefined
-);
+const ThemeProviderContext = createContext<{ name: string } | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   return (
@@ -12,6 +10,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => {
   const context = useContext(ThemeProviderContext);
 

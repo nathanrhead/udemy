@@ -1,4 +1,4 @@
-import Component from './starter/06-context/';
+import Component from './final/06-context/';
 
 function App() {
   return (

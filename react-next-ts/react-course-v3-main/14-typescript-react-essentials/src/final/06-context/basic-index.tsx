@@ -6,7 +6,6 @@ function ParentComponent() {
       <Component />
     </ThemeProvider>
   );
-  return <Component />;
 }
 
 function Component() {
