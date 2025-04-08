@@ -9,7 +9,7 @@ type Tour = {
 };
 
 export default async function Tours() {
-  await new Promise(resolve => setTimeout(resolve, 3000));
+  // await new Promise(resolve => setTimeout(resolve, 3000)); // Artifical pause to mimic latency.
   const url = 'https://www.course-api.com/react-tours-project';
   const data: Tour[] = await (await fetch(url)).json(); 
     
