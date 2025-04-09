@@ -439,9 +439,9 @@ npx prisma init
 
 ### Setup Instance
 
-In development, the command next dev clears Node.js cache on run. This in turn initializes a new PrismaClient instance each time due to hot reloading that creates a connection to the database. This can quickly exhaust the database connections as each PrismaClient instance holds its own connection pool.
+In development, the command `next dev` clears Node.js cache on run. This in turn initializes a new PrismaClient instance each time due to hot reloading that creates a connection to the database. This can quickly exhaust the database connections as each PrismaClient instance holds its own connection pool.
 
-(Prisma Instance)[https://www.prisma.io/docs/guides/other/troubleshooting-orm/help-articles/nextjs-prisma-client-dev-practices#solution]
+[Prisma Instance](https://www.prisma.io/docs/guides/other/troubleshooting-orm/help-articles/nextjs-prisma-client-dev-practices#solution)
 
 - create utils/db.ts
 
@@ -494,13 +494,11 @@ model TestProfile {
 id  String @id @default(uuid())
 name String
 
-```
-
-- npx prisma migrate dev --name init
-- npx prisma db push
+Merge into the DB: npx prisma migrate dev --name init
+Overwrite the DB: npx prisma db push
 
 npx prisma migrate dev --name init creates a new migration for your database schema
-changes and applies it, while npx prisma db push directly updates the database schema without creating a migration. In the context of databases, a migration is set of operations, that modify the database schema, helping it evolve over time while preserving existing data.
+changes and applies it, while npx prisma db push directly updates the database schema without creating a migration. In the context of databases, a migration is set of operations that modify the database schema, helping it evolve over time while preserving existing data.
 
 ```bash
 npx prisma db push
