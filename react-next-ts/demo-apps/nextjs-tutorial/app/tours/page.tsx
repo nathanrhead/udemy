@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 type Tour = {
   id: string;
@@ -14,7 +15,7 @@ export default async function Tours() {
   const data: Tour[] = await (await fetch(url)).json(); 
     
   return (
-    <section className='text-3xl mb-4'>
+    <section className='text-3xl mb-4 grid md:grid-cols-2 gap-8'>
       {data && data.length > 0 && (
         data.map(entry => (
           <Link 
@@ -23,9 +24,19 @@ export default async function Tours() {
               pathname: `/tours/${entry.id}`,
               query: { ...entry }
             }} 
-            className='block hover:text-blue-500'
+            className='block hover:text-blue-500 text-lg mb-10'
           >
-            {entry.name}
+            <div className='relative h-48 w-full mb-2'>
+              <Image 
+                src={entry.image}
+                alt={`Image of ${entry.name}`}
+                sizes='33vw'
+                fill
+                priority
+                className='object-cover rounded'
+              />
+            </div>
+            <h2>{entry.name}</h2>
           </Link>
         ))
       )}

@@ -14,7 +14,7 @@ export default async function PageTemplate({ searchParams,}: { params: { slug: s
           alt={`Image of ${name}`}
           width={300}
           height={300}
-          className='w-full h-auto'
+          className='w-full h-auto object-cover rounded'
           priority
         />
       )}
